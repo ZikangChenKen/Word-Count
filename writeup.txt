@@ -1,0 +1,103 @@
+COMP 321 Project 2: Word Count
+Zikang Chen zc45
+
+---(Do not write lines of text that exceed the width of this line.)------------
+
+TESTING STRATEGY
+
+Black box test cases
+1. The input text is empty.
+2. The input text has only one word.
+3. The input text has multiple words separated by spaces in the standard way.
+4. The input text has mutiple spaces between two words.
+5. The input text has leading and trailing spaces.
+6. The input text has special characters.
+7. The input text contains one word that is composed of a mix of 
+upper- and lowercase characters.
+8. The input text contains invalid character.
+9. The input text has only one character.
+10. The input text has only several spaces.
+11. The input text is invalid which means it could not be opened.
+12. The input text is broken in the middle of the text, which means it 
+could not be read to the end of the text.
+13. The input text's last line has a '\n'.
+14. The input text's last line does not have a '\n'.
+15. The input texts are entered based on their asciibetical order.
+16. The input texts are not entered based on their asciibetical order.
+17. One of the input file does not exist. It should print the correct
+error message.
+18. Multiple files do not exist. It shoud print the correct error message.
+19. The input has a multiple broken file. It should print the correct 
+error message.
+20. The input has only one file. It should process correctly and print 
+the count of that file and the total count.
+21. The input has multiple files. It should process correctly and print 
+the count of that file and the total count.
+22. The argument char_flag is true. Test whether it would only print the 
+char count.
+23. The argument word_flag is true. Test whether it would only print the 
+word count.
+24. The argument line_flag is true. Test whether it would only print 
+the line count.
+25. Some of the arguments char_flag, word_flag, line_flag are true. Test
+whether it print the required counts.
+26. None of char_flag, word_flag, line_flag is true. Test whether it would 
+only print the name by asciibetical order.
+27. At least one file starts with one or multiple '\n'. Test whether it 
+behave correctly.
+28. At least one file has multiple '\n' between two words.
+29. At least one file has only '\n'. 
+30. The input text has a large number of characters, words and lines. Test 
+it behave correctly.
+
+White box test cases
+1. The input text is empty. This test case deals with the if statement
+"if (temp >= 0)".
+2. The input text is valid which means it could not be opened. This test 
+case deals with the if statement "if (input_file == NULL)".
+3. The input text is broken in the middle of the text, which means it 
+could not be read to the end of the text. This test case deals with the 
+if statement "if (!feof(input_file))".
+4. The input text has mutiple spaces between two words. This test case 
+deals with the if statement "if (indicator)".
+5. The input text has leading and trailing white spaces. This test case 
+deals with the if statement "if (!isspace(temp))" and "if (indicator)".
+6. The input texts are entered based on their asciibetical order. This test
+case deals with the if statement "if (cur->next == NULL)".
+7. At least one file does not exist. Test whether it prints the correct
+error message.
+8. At least one file is broken in the middle. Test whether it prints the 
+correct error message.
+9. Some of the char_flag, word_flag, line_flag are true. Test the if 
+statement "if (char_flag)", "if (word_flag)" and "if (line_flag)".
+10. At least one file has multiple '\n' whether in the start or in the 
+middle.
+11. At least one file does not have '\n' at the end of the test. Test 
+the if statement "if (temp != '\n')". 
+
+Edge case
+1. If the input text is empty, then we should not add word count in the end. 
+I handled this edge case by initializing my temp to be -1, instead of 0, 
+so the if statement "if temp >= 0" would not allow word count to be added. 
+I test this edge case based on my white box test case 1.
+2. If the input text has mutiple spaces between two words. I handled this 
+edge case by creating an indicator to record whether I have counted this 
+space before. I test this edge case based on my white box test case 4.
+3. If the input text has leading and trailing white spaecs. I handled this 
+edge case by adding requirements to add word count. If the indicator is 
+false or temp is a white space then I can not add word count. I test this 
+edge case based on my white box test case 5.
+4. If the input texts are entered based on their asciibetical order, then
+we should add each file at the end of the linkedlist. I handled this edge
+case by adding the if statement to decide if the while loop has traversed
+the entire linkedlist, and find that the new node should be added at the 
+end of the linkedlist. I test this edge case based on my white box test 
+case 6.
+5. If the input text has multiple '\n' whether in the start or in the middle
+, then we should count the words and lines correctly. I handled this edge
+case based on my white box test case 10.
+6. If the input text does not have a '\n' at the end of the text, then 
+we still should add the word but not the line. I handled this edge case
+by adding the if statement if (temp != '\n')" to test the last character 
+is '\n'. I test this edge case based on my white box test case 11. 
+
